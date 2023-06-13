@@ -32,6 +32,8 @@ jobs:
       run: pip install boto3  
     - name: Install lib openpyxl
       run: pip install openpyxl
+    - name: Install lib Faker
+      run: pip install Faker  
       
     - name: create_fake_data
       run: |
