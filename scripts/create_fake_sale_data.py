@@ -63,7 +63,7 @@ for i in range(len(df_fake['endereco'])):
 df_fake['uf'] = lista_uf
 df_fake.drop_duplicates(inplace=True)
 
-df_fake.rename(columns={'job':'cargo', 'company':'empresa', 'ssn':'matricula', 'name':'nome', 'sex':'sexo','address':'endereco', birthdate':'data_nasc'}, inplace=True)
+df_fake.rename(columns={'job':'cargo', 'company':'empresa', 'ssn':'matricula', 'name':'nome', 'sex':'sexo','address':'endereco', 'birthdate':'data_nasc'}, inplace=True)
 
 df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8')
 df_fake
