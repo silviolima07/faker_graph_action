@@ -57,7 +57,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    needs: import_libs_and_run_scrip_create_data
+    needs: import_libs_and_run_scrip_create_sale_data
     steps:
      - uses: actions/download-artifact@v1
        with:
