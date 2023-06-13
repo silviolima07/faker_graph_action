@@ -38,6 +38,7 @@ jobs:
           pwd;ls;python scripts/create_fake_sale_data.py
 
         
+        
     - name: upload tabela csv
       run:  pwd;ls -l;mkdir transferir;cp df_fake.csv transferir; ls transferir
     - uses: actions/upload-artifact@v1
