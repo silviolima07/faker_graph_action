@@ -33,7 +33,7 @@ def create_sales(x):
         sales_data[i]['qtd'] = np.random.randint(1,10)
         sales_data[i]['produto'] =  chr(np.random.randint(ord('A'), ord('Z')))
         sales_data[i]['total'] = sales_data[i]['preco'] * sales_data[i]['qtd']
-        sales_data[i]['forma_de_pagamento'] = np.random.choice(['boleto', 'cartão_cred', 'a vista'])
+        sales_data[i]['forma_de_pagamento'] = np.random.choice(['boleto', 'cartao_cred', 'a vista'])
     print("done")
     return sales_data
 
@@ -57,8 +57,8 @@ df_fake = pd.concat([df_profile, df_sale], axis=1)
 
 # Extracting and creating column UF
 lista_uf=[]
-for i in range(len(df_fake['endereco'])):
-  lista_uf.append(df_fake['endereco'][i].split(' / ')[1])
+for i in range(len(df_fake['address'])):
+  lista_uf.append(df_fake['address'][i].split(' / ')[1])
 
 df_fake['uf'] = lista_uf
 df_fake.drop_duplicates(inplace=True)

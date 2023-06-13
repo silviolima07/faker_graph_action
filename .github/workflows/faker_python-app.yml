@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  import_libs_and_run_scrip_create_data:
+  import_libs_and_run_scrip_create_sale_data:
 
     runs-on: ubuntu-latest
     #env:
