@@ -1,39 +1,71 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
-
-name: Python application
+name: Gerar Dados de vendas
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+  workflow_dispatch:
 
 jobs:
-  build:
+  import_libs_and_run_scrip_create_data:
 
     runs-on: ubuntu-latest
+    #env:
+    #  AWS_DEFAULT_REGION: us-east-1
+      
+    #permissions:
+    #  id-token: write
+    #  contents: read
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v3
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
       with:
-        python-version: "3.10"
-    - name: Install dependencies
+        python-version: "3.9"
+    - name: Install lib pandas
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
-        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
+        pip install pandas
+    - name: Install lib numpy
+      run: pip install numpy
+    - name: Install lib botocore
+      run: pip install botocore    
+    - name: Install lib boto3
+      run: pip install boto3  
+    - name: Install lib openpyxl
+      run: pip install openpyxl
+      
+    - name: create_fake_data
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        pytest
+          pwd;ls;python scripts/create_fake_sale_data.py
+
+        
+    - name: upload tabela csv
+      run:  pwd;ls -l;mkdir transferir;cp df_fake.csv transferir; ls transferir
+    - uses: actions/upload-artifact@v1
+      with:
+         name: df_fake.csv
+         path: transferir
+   #####################################################      
+  download_file:
+    name: get_cred_and_copy_table_to s3
+    runs-on: ubuntu-latest
+    env:
+      AWS_DEFAULT_REGION: us-east-1
+      
+    permissions:
+      id-token: write
+      contents: read
+    needs: import_libs_and_run_scrip_create_data
+    steps:
+     - uses: actions/download-artifact@v1
+       with:
+          name: df_fake.csv
+          path: .
+ #         
+     - name: get aws credential
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+          role-to-assume: arn:aws:iam::${{secrets.id}}:role/github-actions-role
+          aws-region: ${{env.AWS_DEFAULT_REGION}}    
+     - name: copy table to bucket
+       run: |
+          pwd;ls -l ;aws s3 cp df_fake.csv s3://s3-df_fake

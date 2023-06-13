@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import string
-from faker import Faker 
-import json                 
+from faker import Faker                
 import numpy as np
 import pandas as pd
 fake = Faker() 
