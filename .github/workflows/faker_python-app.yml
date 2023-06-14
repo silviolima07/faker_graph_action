@@ -71,4 +71,4 @@ jobs:
           aws-region: ${{env.AWS_DEFAULT_REGION}}    
      - name: copy table to bucket
        run: |
-          pwd;ls -l ;aws s3 cp df_fake.csv s3://df_fake-sale-bucket
+          pwd;ls -l ;aws s3 cp df_fake.csv s3://df-fake-sale-bucket
