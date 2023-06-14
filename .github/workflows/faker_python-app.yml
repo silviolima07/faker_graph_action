@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  import_libs_and_run_scrip_create_sale_data:
+  import_libs_and_run_script_create_sale_data:
 
     runs-on: ubuntu-latest
     #env:
@@ -57,7 +57,7 @@ jobs:
     permissions:
       id-token: write
       contents: read
-    needs: import_libs_and_run_scrip_create_sale_data
+    needs: import_libs_and_run_script_create_sale_data
     steps:
      - uses: actions/download-artifact@v1
        with:
@@ -71,4 +71,4 @@ jobs:
           aws-region: ${{env.AWS_DEFAULT_REGION}}    
      - name: copy table to bucket
        run: |
-          pwd;ls -l ;aws s3 cp df_fake.csv s3://s3-df_fake
+          pwd;ls -l ;aws s3 cp df_fake.csv s3://df_fake-sale-bucket
