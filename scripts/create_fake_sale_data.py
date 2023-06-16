@@ -32,7 +32,7 @@ def create_sales(x):
         sales_data[i]['preco (R$)'] = np.random.randint(10,500)
         sales_data[i]['qtd'] = np.random.randint(1,10)
         sales_data[i]['produto'] =  chr(np.random.randint(ord('A'), ord('Z')))
-        sales_data[i]['total (R$)'] = sales_data[i]['preco'] * sales_data[i]['qtd']
+        sales_data[i]['total (R$)'] = sales_data[i]['preco (R$)'] * sales_data[i]['qtd']
         sales_data[i]['forma_de_pagamento'] = np.random.choice(['boleto', 'cartao_cred', 'a vista'])
     print("done")
     return sales_data
@@ -66,4 +66,6 @@ df_fake.drop_duplicates(inplace=True)
 df_fake.rename(columns={'job':'cargo', 'company':'empresa', 'ssn':'matricula', 'name':'nome', 'sex':'sexo','address':'endereco', 'birthdate':'data_nasc'}, inplace=True)
 
 df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8')
-print(df_fake.head())
+print("Shape:", df_fake.shape)
+print("Columns:", df_fake.columns)
+print(df_fake[['nome', 'cargo', 'empresa']])
