@@ -40,7 +40,7 @@ def create_sales(x):
 
 
 # Total lines created
-n = 10000
+n = 500
 
 # Create fake profile
 infos = ['name','job', 'company','ssn', 'address', 'sex', 'birthdate']
