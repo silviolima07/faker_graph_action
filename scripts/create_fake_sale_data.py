@@ -32,7 +32,7 @@ def create_sales(x):
         sales_data[i]['preco'] = np.random.randint(10,500)
         sales_data[i]['qtd'] = np.random.randint(1,10)
         sales_data[i]['produto'] =  chr(np.random.randint(ord('A'), ord('Z')))
-        sales_data[i]['total'] = sales_data[i]['preco (R$)'] * sales_data[i]['qtd']
+        sales_data[i]['total'] = sales_data[i]['preco'] * sales_data[i]['qtd']
         sales_data[i]['forma_de_pagamento'] = np.random.choice(['boleto', 'cartao_cred', 'a vista'])
     print("done")
     return sales_data
