@@ -29,10 +29,10 @@ def create_sales(x):
     sales_data ={} 
     for i in range(0, x): 
         sales_data[i]={} 
-        sales_data[i]['preco (R$)'] = np.random.randint(10,500)
+        sales_data[i]['preco'] = np.random.randint(10,500)
         sales_data[i]['qtd'] = np.random.randint(1,10)
         sales_data[i]['produto'] =  chr(np.random.randint(ord('A'), ord('Z')))
-        sales_data[i]['total (R$)'] = sales_data[i]['preco (R$)'] * sales_data[i]['qtd']
+        sales_data[i]['total'] = sales_data[i]['preco (R$)'] * sales_data[i]['qtd']
         sales_data[i]['forma_de_pagamento'] = np.random.choice(['boleto', 'cartao_cred', 'a vista'])
     print("done")
     return sales_data
@@ -69,3 +69,4 @@ df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8')
 print("Shape:", df_fake.shape)
 print("Columns:", df_fake.columns)
 print(df_fake[['nome', 'cargo', 'empresa']])
+print(df_fake[['produto', 'preco', 'total']])
