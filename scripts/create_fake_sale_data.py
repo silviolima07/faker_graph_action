@@ -40,7 +40,7 @@ def create_sales(x):
 
 
 # Total lines created
-n = 120
+n = np.random.randint(100,200)
 
 # Create fake profile
 infos = ['name','job', 'company','ssn', 'address', 'sex', 'birthdate']
