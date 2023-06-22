@@ -43,7 +43,7 @@ def create_sales(x):
 n = np.random.randint(100,200)
 
 # Create fake profile
-infos = ['job', 'company', 'address', 'sex', 'birthdate']
+infos = ['job', 'company', 'address', 'sex']
 profiles = create_profile(n)
 df_prof = pd.DataFrame.from_dict(profiles)
 df_profile = df_prof.T
@@ -64,7 +64,7 @@ df_fake['uf'] = lista_uf
 df_fake.drop_duplicates(inplace=True)
 del df_fake['address']
 
-df_fake.rename(columns={'job':'cargo', 'company':'empresa','sex':'sexo', 'birthdate':'data_nasc'}, inplace=True)
+df_fake.rename(columns={'job':'cargo', 'company':'empresa','sex':'sexo''}, inplace=True)
 df_fake['preco'] = df_fake['preco'].astype('int32')
 df_fake['total'] = df_fake['total'].astype('int32')
 df_fake['qtd'] = df_fake['qtd'].astype('int32')
