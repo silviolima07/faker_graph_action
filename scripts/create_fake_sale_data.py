@@ -43,7 +43,7 @@ def create_sales(x):
 n = np.random.randint(100,200)
 
 # Create fake profile
-infos = ['name','job', 'company','ssn', 'address', 'sex', 'birthdate']
+infos = ['job', 'company','ssn', 'address', 'sex', 'birthdate']
 profiles = create_profile(n)
 df_prof = pd.DataFrame.from_dict(profiles)
 df_profile = df_prof.T
@@ -62,13 +62,17 @@ for i in range(len(df_fake['address'])):
 
 df_fake['uf'] = lista_uf
 df_fake.drop_duplicates(inplace=True)
+del df_fake['address']
 
-df_fake.rename(columns={'job':'cargo', 'company':'empresa', 'ssn':'matricula', 'name':'nome', 'sex':'sexo','address':'endereco', 'birthdate':'data_nasc'}, inplace=True)
+df_fake.rename(columns={'job':'cargo', 'company':'empresa', 'ssn':'matricula', 'sex':'sexo', 'birthdate':'data_nasc'}, inplace=True)
 df_fake['preco'] = df_fake['preco'].astype('int32')
 df_fake['total'] = df_fake['total'].astype('int32')
 df_fake['qtd'] = df_fake['qtd'].astype('int32')
 
-df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8')
+header = ['cargo','uf']
+df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8', columns = header)
+
+#df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8')
 print("Shape:", df_fake.shape)
 print("Columns:", df_fake.columns)
 print("Type:", df_fake.info())
