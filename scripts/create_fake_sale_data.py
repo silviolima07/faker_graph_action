@@ -69,10 +69,11 @@ df_fake['preco'] = df_fake['preco'].astype('int32')
 df_fake['total'] = df_fake['total'].astype('int32')
 df_fake['qtd'] = df_fake['qtd'].astype('int32')
 
-header = ['cargo','uf']
-df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8', columns = header)
+# Teste de leitura no redshift ok
+#header = ['cargo','uf']
+#df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8', columns = header)
 
-#df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8')
+df_fake.to_csv("df_fake.csv", index=False, encoding='utf-8')
 print("Shape:", df_fake.shape)
 print("Columns:", df_fake.columns)
 print("Type:", df_fake.info())
